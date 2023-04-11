@@ -1,0 +1,27 @@
+from flask import Flask, request, render_template, url_for, redirect
+import requests
+
+app = Flask(__name__)
+
+@app.route("/", methods=["GET"])
+def show_form():
+    return render_template("index.html")
+
+@app.route("/", methods=["POST"])
+def submit_form():
+    jwtvalue = request.form["jwtvalue"]
+    ids = [54870761, 55659611, 64178722, 64179656, 64179398, 64179735]
+    for id in ids:
+        url = f"https://api.go1.co/exim/enrollment/{id}/pdf?jwt={jwtvalue}"
+        response = requests.get(url)
+        if response.status_code == 200 and response.headers.get("content-type") == "application/pdf":
+            with open(str(id) + ".pdf", "wb") as pdf_file:
+                pdf_file.write(response.content)
+                print(str(id) + " file saved successfully.")
+        else:
+            print("Error occurred while retrieving the PDF file.")
+            return "Error occurred while retrieving the PDF file."
+    return "Your request to download certificates have been processed successfully"
+
+if __name__ == "__main__":
+    app.run(debug=True)

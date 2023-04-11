@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go1 Bulk Certificates Download</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+   
+    <style>
+        #processing-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="{{ url_for('submit_form') }}" method="post">
+          <label for="jwtvalue">JWT Value:</label>
+          <input type="text" id="jwtvalue" name="jwtvalue">
+          <br>
+          <label for="ids">Enrolment IDs (separated by comma or space):</label>
+          <input type="text" id="ids" name="ids">
+          <br>
+          <button type="submit" onclick="showProcessingMessage()">Submit</button>
+          <div id="processing-message"></div>
+        </form>
+    </div>
+    
+    <script>
+        function showProcessingMessage() {
+            // Get the processing message element
+            const processingMessage = document.getElementById("processing-message");
+            
+            // Set the content and style of the processing message
+            processingMessage.innerHTML = "Processing form submission...Please wait!";
+        }
+    </script>
+</body>
+</html>

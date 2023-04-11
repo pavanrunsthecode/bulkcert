@@ -1,0 +1,57 @@
+body {
+    background-image: url("GO1_Logo_Petrol_Green_RGB.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ccc;
+  }
+  
+  label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+    font-size: 18px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    color: #392f2f;
+    font-size: 16px;
+  }
+  
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  button[type="submit"] {
+    background-color: green;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: darkgreen;
+  }
