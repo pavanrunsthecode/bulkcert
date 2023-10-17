@@ -9,32 +9,37 @@
    
     <style>
         #processing-message {
-            color: red;
+            color: rgb(0, 255, 64);
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <form action="{{ url_for('submit_form') }}" method="post">
-          <label for="jwtvalue">JWT Value:</label>
-          <input type="text" id="jwtvalue" name="jwtvalue">
-          <br>
-          <label for="ids">Enrolment IDs (separated by space):</label>
-          <input type="text" id="ids" name="ids">
-          <br>
-          <button type="submit" onclick="showProcessingMessage()">Submit</button>
-          <div id="processing-message"></div>
+        <form action="{{ url_for('submit_form') }}" method="post" onsubmit="return validateForm()">
+            <label for="jwtvalue">JWT Value:</label>
+            <input type="text" id="jwtvalue" name="jwtvalue" required>
+            <br>
+            <label for="ids">Enrollment IDs (separated by space):</label>
+            <input type="text" id="ids" name="ids" required>
+            <br>
+            <button type="submit" onclick="showProcessingMessage()">Submit</button>
+            <div id="processing-message"></div>
         </form>
     </div>
-    
+
     <script>
-        function showProcessingMessage() {
-            // Get the processing message element
+        function validateForm() {
+            const jwtValue = document.getElementById("jwtvalue").value;
+            const ids = document.getElementById("ids").value;
             const processingMessage = document.getElementById("processing-message");
-            
-            // Set the content and style of the processing message
-            processingMessage.innerHTML = "Processing form submission...Please wait!";
+
+            if (jwtValue.trim() === "" || ids.trim() === "") {
+                processingMessage.innerHTML = "Fields cannot be left blank.";
+                return false; // Prevent form submission
+            }
+
+            return true; // Allow form submission
         }
-    </script>
-</body>
-</html>
+
+        function showProcessingMessage() {
+            const processingMessage = document.getElementById("processing-message");
